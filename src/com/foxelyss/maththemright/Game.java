@@ -12,7 +12,6 @@ import javax.microedition.midlet.MIDletStateChangeException;
 
 public class Game extends MIDlet implements CommandListener {
 
-
     private static final String START_FORM_TITLE = "Math Them Right";
 
     private static final String START_MESSAGE = "Пожалуйста нажмите Далее";
@@ -22,6 +21,7 @@ public class Game extends MIDlet implements CommandListener {
 
     private static final String WIN_SOUND = "/com/foxelyss/maththemright/res/win.wav";
     private static final String LOSE_SOUND = "/com/foxelyss/maththemright/res/lose.wav";
+    private static final String SONG_SOUND = "/com/foxelyss/maththemright/res/music.wav";
 
     Display display;
 
@@ -32,9 +32,11 @@ public class Game extends MIDlet implements CommandListener {
 
     Player win_player;
     Player lose_player;
+    Player music_player;
 
     InputStream win_sound_stream;
     InputStream lose_sound_stream;
+    InputStream music_sound_stream;
 
     Form startForm;
 
@@ -76,8 +78,8 @@ public class Game extends MIDlet implements CommandListener {
         try {
             win_sound_stream = getClass().getResourceAsStream(WIN_SOUND);
             lose_sound_stream = getClass().getResourceAsStream(LOSE_SOUND);
+            music_sound_stream = getClass().getResourceAsStream(SONG_SOUND);
 
-            // Create player
             win_player = Manager.createPlayer(win_sound_stream, CONTENT_TYPE);
 
             win_player.realize();
@@ -87,6 +89,11 @@ public class Game extends MIDlet implements CommandListener {
 
             lose_player.realize();
             lose_player.prefetch();
+
+            music_player = Manager.createPlayer(music_sound_stream, CONTENT_TYPE);
+
+            music_player.realize();
+            music_player.prefetch();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -160,18 +167,6 @@ public class Game extends MIDlet implements CommandListener {
 
             answers.append(answer, null);
         }
-
-//        for (int i = 0; i < 4; i++) {
-//            String answer = (right_result + random.nextInt(16))+"";
-//            if (i == right_answer) {
-//                answer = ""+right_result;
-//            }
-//
-//
-//            answers.set(i, answer,null);
-//        }
-
     }
-
 
 }
