@@ -21,14 +21,14 @@ public class Game extends MIDlet implements CommandListener {
 
     private static final String WIN_SOUND = "/com/foxelyss/maththemright/res/win.wav";
     private static final String LOSE_SOUND = "/com/foxelyss/maththemright/res/lose.wav";
-    private static final String SONG_SOUND = "/com/foxelyss/maththemright/res/music.wav";
+    private static final String MUSIC_SOUND = "/com/foxelyss/maththemright/res/music.wav";
 
     Display display;
 
     ChoiceGroup answers;
 
     Command startCommand = new Command("Далее", Command.OK, 1);
-    Command exitCommand = new Command("Exit", Command.EXIT, 2);
+    Command exitCommand = new Command("Выход", Command.EXIT, 2);
 
     Player win_player;
     Player lose_player;
@@ -49,6 +49,7 @@ public class Game extends MIDlet implements CommandListener {
     }
 
     public void startApp() throws MIDletStateChangeException {
+        initAudio();
         startForm = new Form(START_FORM_TITLE);
         startForm.append(START_MESSAGE);
         startForm.addCommand(startCommand);
@@ -59,7 +60,11 @@ public class Game extends MIDlet implements CommandListener {
         startForm.append(answers);
         display.setCurrent(startForm);
 
-        initAudio();
+        try {
+            music_player.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void pauseApp() {
@@ -68,7 +73,11 @@ public class Game extends MIDlet implements CommandListener {
     public void destroyApp(boolean unconditional) {
         try {
             win_player.stop();
+            lose_player.stop();
+            music_player.stop();
             win_player = null;
+            lose_player = null;
+            music_player = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,7 +87,7 @@ public class Game extends MIDlet implements CommandListener {
         try {
             win_sound_stream = getClass().getResourceAsStream(WIN_SOUND);
             lose_sound_stream = getClass().getResourceAsStream(LOSE_SOUND);
-            music_sound_stream = getClass().getResourceAsStream(SONG_SOUND);
+            music_sound_stream = getClass().getResourceAsStream(MUSIC_SOUND);
 
             win_player = Manager.createPlayer(win_sound_stream, CONTENT_TYPE);
 
@@ -92,8 +101,10 @@ public class Game extends MIDlet implements CommandListener {
 
             music_player = Manager.createPlayer(music_sound_stream, CONTENT_TYPE);
 
+            music_player.setLoopCount(-1);
             music_player.realize();
             music_player.prefetch();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
