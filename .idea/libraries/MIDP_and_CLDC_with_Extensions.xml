@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="MIDP and CLDC with Extensions">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/3dapi.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/amms.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/cldc10.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/cldc11.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/jsr75.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/jsr82.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/jsr172.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/jsr179.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/jsr211.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/midp10.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/midp20.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/midp21.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/mmapi12.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/nokiaui.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/satsa-apdu.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/satsa-crypto.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/svg11.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/wma11.jar!/" />
+      <root url="jar://$USER_HOME$/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK/lib/wma20.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

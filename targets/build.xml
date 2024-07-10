@@ -1,0 +1,99 @@
+  <project name="Math Them Right" default="build" basedir="..">
+  
+  <property name="build" value="build" />
+  <property name="classes" value="${build}/classes" />
+  <property name="src" value="src" />
+  <property name="rsrc" value="rsrc" />
+  <property name="midp_rsrc" value="${rsrc}/midp" />
+  <property name="bundle" value="${build}/bundle" />
+  <property name="preverified" value="${build}/preverified" />
+  <property name="bin" value="bin" />
+  <property name="midp_bin" value="${midp}/bin" />
+  <property name="targets" value="targets" />
+  <property name="javadoc" value="doc/javadoc" />
+  <property name="javadoc_rsrc" value="${rsrc}/javadoc" />
+
+  <property name="midp" value="." />
+
+  <property name="java_cmd" value="/home/stephan/openjdk6/bin/javac" />
+  <property name="sdk_location" value="/home/stephan/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK" />
+
+
+  <description>
+   Audio3D Example MIDlet java build project file
+  </description>
+
+
+  <target name="clean">
+    <delete dir="${bin}" />
+  </target>
+
+  <target name="cleanSrc" description="deletes all class files from src folder">
+    <delete>
+      <fileset dir="${src}" includes="**/*.class"/>
+    </delete>
+  </target>
+
+
+  <target name="build" description="clean, compile and build">
+    <antcall target="clean" /> 
+    <antcall target="compile" /> 
+    <antcall target="preverify" /> 
+    <antcall target="package" /> 
+  </target>
+
+  <target name="compile">
+	
+    <mkdir dir="${classes}" />
+    <javac destDir="${classes}" srcDir="${src}" source="1.4" target="1.4" classpathref="project.class.path" includeAntRuntime="no" includeJavaRuntime="no" fork="yes" executable="${java_cmd}">
+	<bootclasspath>
+          <fileset dir="${sdk_location}/lib">
+        	<include name="**/*.jar"/>
+		<include name="**/*.zip"/>
+      		</fileset>   
+  	</bootclasspath>  
+  	
+    
+   </javac>  
+   <copy todir="${classes}">
+      <fileset dir="${src}" excludes="**/*.java"/>
+    </copy>
+  </target>
+
+
+<path id="project.class.path">
+  <fileset dir="${sdk_location}/lib">
+        	   <include name="**/*.jar"/>
+		         <include name="**/*.zip"/>
+      		</fileset>   
+  </path>
+
+ <property name="myclasspath" refid="project.class.path"/>
+
+  <target name="preverify">
+
+    <mkdir dir="${preverified}"/>
+    <exec executable="./targets/preverify.sh"  failonerror="true">  
+	
+      <arg line="-classpath ${myclasspath}"/>
+      <arg line="-d ${preverified}"/>
+      <arg line="${classes}"/>
+    </exec>     
+    <copy todir="${preverified}"  failonerror="false">
+      <fileset dir="${src}" excludes="**/*.java"/>
+    </copy>
+  </target>
+  
+  <target name="package">
+    <mkdir dir="${bin}" /> 
+      <jar basedir="${preverified}" jarfile="${bin}/${ant.project.name}.jar"
+      manifest="${midp_rsrc}/MANIFEST.MF" compress="true">
+      </jar>
+
+    <length file="${bin}/${ant.project.name}.jar" property="length.jarfile" /> 
+    <copy file="${midp_rsrc}/${ant.project.name}.jad" toDir="${bin}" />  
+    <replace file="${bin}/${ant.project.name}.jad" token="@@@" value="${length.jarfile}"/>
+
+  </target>
+
+</project>

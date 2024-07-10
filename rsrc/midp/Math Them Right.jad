@@ -1,0 +1,9 @@
+MIDlet-1: Game, /com/foxelyss/maththemright/res/icon.png, com.foxelyss.maththemright.Game
+MIDlet-Description: Simple math game
+MIDlet-Jar-Size: @@@
+MIDlet-Jar-URL: https://foxelyss.github.io
+MIDlet-Name: Math them Right
+MIDlet-Vendor: Foxelyss
+MIDlet-Version: 1.6.8
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.1
