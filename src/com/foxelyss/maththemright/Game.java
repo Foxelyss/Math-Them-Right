@@ -144,7 +144,7 @@ public class Game extends MIDlet implements CommandListener {
 
         int operation = random.nextInt(4);
 
-        double right_result = (double) a / b;
+        int right_result =  a / b;
 
         char operand = '/';
         switch (operation) {
@@ -169,7 +169,8 @@ public class Game extends MIDlet implements CommandListener {
 
         answers.deleteAll();
         for (int i = 0; i < 4; i++) {
-            String answer = (right_result + 1 + random.nextInt(16)) + "";
+            int offset = random.nextInt(24);
+            String answer = (right_result + offset < 12 ? -1 * (1 + offset) : offset) + "";
             if (i == right_answer_index) {
                 answer = "" + right_result;
             }
