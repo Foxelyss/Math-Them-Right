@@ -1,3 +1,36 @@
+# Простая игра для J2ME "Посчитай их правильно"
+
+Простая игра для устройств с поддержкой J2ME приложений. Может использоваться как болванка.
+
+## Сборка
+
+Для сборки нужен Nokia Series 40 SDK и [Apache Ant]. Нужно поменять эти переменные в файле `targets/build.xml`:
+`sdk_location`, `java_cmd` на ваш SDK и java 1.6 соответственно.
+
+Также измените `executable` на ваш путь к вашему файлу `preverify.exe`, либо на `${sdk_location}\bin\preverify.exe`
+```xml
+ <target name="preverify">
+
+    <mkdir dir="${preverified}"/>
+    <exec executable="./targets/preverify.sh"  failonerror="true">
+	
+      <arg line="-classpath ${myclasspath}"/>
+      <arg line="-d ${preverified}"/>
+      <arg line="${classes}"/>
+    </exec>
+    <copy todir="${preverified}"  failonerror="false">
+      <fileset dir="${src}" excludes="**/*.java"/>
+    </copy>
+  </target>
+```
+
+Затем запустите `ant` в директории `targets`.
+
+_J2ME Loader не работает с этим приложением, т.к. функционал используемый в этом примере не имеет хорошую поддержку.
+Для тестирования лучше используйте эмулятор предоставляемый с SDK, либо реальное устройство._
+
+------
+
 # Simple math game for J2ME!
 
 Works on Symbian devices. Can be used as template for your applications.
@@ -32,37 +65,3 @@ To test apps better always use Nokia's SDK Emulator or real hardware._
 
 
 [Apache Ant]:https://ant.apache.org/
-
-------
-
-# Посчитай их правильно
-
-Простая игра для устройств с поддержкой J2ME приложений. Может использоваться как болванка.
-
-## Сборка
-
-Для сборки нужен Nokia Series 40 SDK и [Apache Ant]. Нужно поменять эти переменные в файле `targets/build.xml`:
-`sdk_location`, `java_cmd` на ваш SDK и java 1.6 соответственно.
-
-Также измените `executable` на ваш путь к вашему файлу `preverify.exe`, либо на `${sdk_location}\bin\preverify.exe`
-```xml
- <target name="preverify">
-
-    <mkdir dir="${preverified}"/>
-    <exec executable="./targets/preverify.sh"  failonerror="true">
-	
-      <arg line="-classpath ${myclasspath}"/>
-      <arg line="-d ${preverified}"/>
-      <arg line="${classes}"/>
-    </exec>
-    <copy todir="${preverified}"  failonerror="false">
-      <fileset dir="${src}" excludes="**/*.java"/>
-    </copy>
-  </target>
-```
-
-Затем запустите `ant` в директории `targets`.
-
-_J2ME Loader не работает с этим приложением, т.к. функционал используемый в этом примере не имеет хорошую поддержку. 
-Для тестирования лучше используйте эмулятор предоставляемый с SDK, либо реальное устройство._
-
