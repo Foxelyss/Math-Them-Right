@@ -2,6 +2,8 @@
 
 Простая игра для устройств с поддержкой J2ME приложений. Может использоваться как болванка.
 
+![Gameplay](https://foxelyss.github.io/assets/misc/maththemright1.png)
+
 ## Сборка
 
 Для сборки нужен Nokia Series 40 SDK и [Apache Ant]. Нужно поменять эти переменные в файле `targets/build.xml`:
@@ -9,7 +11,7 @@
 
 Также измените `executable` на ваш путь к вашему файлу `preverify.exe`, либо на `${sdk_location}\bin\preverify.exe`
 ```xml
- <target name="preverify">
+<target name="preverify">
 
     <mkdir dir="${preverified}"/>
     <exec executable="./targets/preverify.sh"  failonerror="true">
@@ -21,7 +23,7 @@
     <copy todir="${preverified}"  failonerror="false">
       <fileset dir="${src}" excludes="**/*.java"/>
     </copy>
-  </target>
+</target>
 ```
 
 Затем запустите `ant` в директории `targets`.
@@ -42,7 +44,7 @@ to your SDK and java 1.6 instance respectively.
 
 Change `executable` to your preverify file or to `${sdk_location}\bin\preverify.exe`
 ```xml
- <target name="preverify">
+<target name="preverify">
 
     <mkdir dir="${preverified}"/>
     <exec executable="./targets/preverify.sh"  failonerror="true">
@@ -54,7 +56,7 @@ Change `executable` to your preverify file or to `${sdk_location}\bin\preverify.
     <copy todir="${preverified}"  failonerror="false">
       <fileset dir="${src}" excludes="**/*.java"/>
     </copy>
-  </target>
+</target>
 ```
 
 Then call `ant` in `targets` directory.
