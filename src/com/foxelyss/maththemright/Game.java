@@ -169,7 +169,7 @@ public class Game extends MIDlet implements CommandListener {
 
         answers.deleteAll();
         for (int i = 0; i < 4; i++) {
-            String answer = (right_result + random.nextInt(16)) + "";
+            String answer = (right_result + 1 + random.nextInt(16)) + "";
             if (i == right_answer_index) {
                 answer = "" + right_result;
             }
