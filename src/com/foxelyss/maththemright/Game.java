@@ -16,7 +16,6 @@ public class Game extends MIDlet implements CommandListener {
 
     private static final String START_MESSAGE = "Пожалуйста нажмите Далее";
 
-
     private static final String CONTENT_TYPE = "audio/x-wav";
 
     private static final String WIN_SOUND = "/com/foxelyss/maththemright/res/win.wav";
