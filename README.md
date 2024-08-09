@@ -6,27 +6,16 @@
 
 ## Сборка
 
-Для сборки нужен Nokia Series 40 SDK и [Apache Ant]. Нужно поменять эти переменные в файле `targets/build.xml`:
-`sdk_location`, `java_cmd` на ваш SDK и java 1.6 соответственно.
+Для сборки нужен Nokia Series 40 SDK и [Apache Ant]. Нужно поменять эти переменные среды:
+`NOKIA_SERIES40_SDK_PREVERIFY` и `NOKIA_SERIES40_SDK`, `JAVA_6_CMD`, на путь к вашей версии SDK, preverify.exe и java 1.6 соответственно.
 
-Также измените `executable` на ваш путь к вашему файлу `preverify.exe`, либо на `${sdk_location}\bin\preverify.exe`
-```xml
-<target name="preverify">
-
-    <mkdir dir="${preverified}"/>
-    <exec executable="./targets/preverify.sh"  failonerror="true">
-	
-      <arg line="-classpath ${myclasspath}"/>
-      <arg line="-d ${preverified}"/>
-      <arg line="${classes}"/>
-    </exec>
-    <copy todir="${preverified}"  failonerror="false">
-      <fileset dir="${src}" excludes="**/*.java"/>
-    </copy>
-</target>
+Также измените вызовите ant как в этом примере.
+```ps
+PS Math-Them-Right> $env:NOKIA_SERIES40_SDK_PREVERIFY="C:\Nokia\Devices\S40_6th_Edition_SDK\bin\preverify.exe"
+PS Math-Them-Right> $env:JAVA_6_CMD="C:\Program Files\Zulu\zulu-6\bin\javac.exe"
+PS Math-Them-Right> $env:NOKIA_SERIES40_SDK="C:\Nokia\Devices\S40_6th_Edition_SDK"
+PS Math-Them-Right> &"C:\Program Files\apache-ant\bin\ant.bat"
 ```
-
-Затем запустите `ant` в директории `targets`.
 
 _J2ME Loader не работает с этим приложением, т.к. функционал используемый в этом примере не имеет хорошую поддержку.
 Для тестирования лучше всегда используйте эмулятор предоставляемый с SDK, либо реальное устройство._
@@ -39,27 +28,19 @@ Works on Symbian devices. Can be used as template for your applications.
 
 ## Building
 
-To build this app you need to use Nokia Series 40 SDK, also [Apache Ant] and change variables in `targets/build.xml`: `sdk_location` and `java_cmd`
-to your SDK and java 1.6 instance respectively.
+To build this app you need to use Nokia Series 40 SDK, also [Apache Ant] and change these environment variables:
+`NOKIA_SERIES40_SDK_PREVERIFY` и `NOKIA_SERIES40_SDK`, `JAVA_6_CMD`, to your SDK, preverify.exe and java 1.6 instance respectively.
 
 Change `executable` to your preverify file or to `${sdk_location}\bin\preverify.exe`
-```xml
-<target name="preverify">
 
-    <mkdir dir="${preverified}"/>
-    <exec executable="./targets/preverify.sh"  failonerror="true">
-	
-      <arg line="-classpath ${myclasspath}"/>
-      <arg line="-d ${preverified}"/>
-      <arg line="${classes}"/>
-    </exec>
-    <copy todir="${preverified}"  failonerror="false">
-      <fileset dir="${src}" excludes="**/*.java"/>
-    </copy>
-</target>
+```ps
+PS Math-Them-Right> $env:NOKIA_SERIES40_SDK_PREVERIFY="C:\Nokia\Devices\S40_6th_Edition_SDK\bin\preverify.exe"
+PS Math-Them-Right> $env:JAVA_6_CMD="C:\Program Files\Zulu\zulu-6\bin\javac.exe"
+PS Math-Them-Right> $env:NOKIA_SERIES40_SDK="C:\Nokia\Devices\S40_6th_Edition_SDK"
+PS Math-Them-Right> &"C:\Program Files\apache-ant\bin\ant.bat"
 ```
 
-Then call `ant` in `targets` directory.
+Then call `ant` as in example above.
 
 _J2ME Loader is better working with graphics applications while this example doesn't work because it isn't one. 
 J2ME Loader probably doesn't support `Form`s very well. 
