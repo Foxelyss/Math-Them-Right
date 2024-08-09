@@ -1,5 +1,7 @@
-  <project name="Math Them Right" default="build" basedir="..">
-  
+  <project name="MathThemRight" default="build">
+
+  <property environment="env"/>
+
   <property name="build" value="build" />
   <property name="classes" value="${build}/classes" />
   <property name="src" value="src" />
@@ -15,12 +17,13 @@
 
   <property name="midp" value="." />
 
-  <property name="java_cmd" value="/home/stephan/openjdk6/bin/javac" />
-  <property name="sdk_location" value="/home/stephan/.wine/drive_c/Nokia/Devices/S40_6th_Edition_SDK" />
+  <property name="java_cmd" value="${env.JAVA_6_CMD}" />
+  <property name="sdk_location" value="${env.NOKIA_SERIES40_SDK}" />
 
-
+  <property name="preverify" value="${env.NOKIA_SERIES40_SDK_PREVERIFY}" />
+  
   <description>
-   Audio3D Example MIDlet java build project file
+   Math Them Right MIDlet java build project file
   </description>
 
 
@@ -73,7 +76,7 @@
   <target name="preverify">
 
     <mkdir dir="${preverified}"/>
-    <exec executable="./targets/preverify.sh"  failonerror="true">  
+    <exec executable="${preverify}"  failonerror="true">  
 	
       <arg line="-classpath ${myclasspath}"/>
       <arg line="-d ${preverified}"/>
