@@ -20,7 +20,6 @@ public class Game extends MIDlet implements CommandListener {
 
     private static final String WIN_SOUND = "/com/foxelyss/maththemright/res/win.wav";
     private static final String LOSE_SOUND = "/com/foxelyss/maththemright/res/lose.wav";
-    private static final String MUSIC_SOUND = "/com/foxelyss/maththemright/res/music.wav";
 
     Display display;
 
@@ -31,11 +30,9 @@ public class Game extends MIDlet implements CommandListener {
 
     Player win_player;
     Player lose_player;
-    Player music_player;
 
     InputStream win_sound_stream;
     InputStream lose_sound_stream;
-    InputStream music_sound_stream;
 
     Form startForm;
 
@@ -58,12 +55,6 @@ public class Game extends MIDlet implements CommandListener {
         answers = new ChoiceGroup("Ответы", Choice.EXCLUSIVE);
         startForm.append(answers);
         display.setCurrent(startForm);
-
-        try {
-            music_player.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void pauseApp() {
@@ -73,10 +64,8 @@ public class Game extends MIDlet implements CommandListener {
         try {
             win_player.stop();
             lose_player.stop();
-            music_player.stop();
             win_player = null;
             lose_player = null;
-            music_player = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,7 +75,6 @@ public class Game extends MIDlet implements CommandListener {
         try {
             win_sound_stream = getClass().getResourceAsStream(WIN_SOUND);
             lose_sound_stream = getClass().getResourceAsStream(LOSE_SOUND);
-            music_sound_stream = getClass().getResourceAsStream(MUSIC_SOUND);
 
             win_player = Manager.createPlayer(win_sound_stream, CONTENT_TYPE);
 
@@ -97,12 +85,6 @@ public class Game extends MIDlet implements CommandListener {
 
             lose_player.realize();
             lose_player.prefetch();
-
-            music_player = Manager.createPlayer(music_sound_stream, CONTENT_TYPE);
-
-            music_player.setLoopCount(-1);
-            music_player.realize();
-            music_player.prefetch();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -144,7 +126,7 @@ public class Game extends MIDlet implements CommandListener {
 
         int operation = random.nextInt(4);
 
-        int right_result =  a / b;
+        int right_result = a / b;
 
         char operand = '/';
         switch (operation) {
@@ -170,9 +152,9 @@ public class Game extends MIDlet implements CommandListener {
         answers.deleteAll();
         for (int i = 0; i < 4; i++) {
             int offset = random.nextInt(24);
-            String answer = (right_result + offset < 12 ? -1 * (1 + offset) : offset) + "";
-            if (i == right_answer_index) {
-                answer = "" + right_result;
+            String answer = "" + right_result;
+            if (i != right_answer_index) {
+                answer = (right_result + (offset < 12 ? -1 * (1 + offset) : offset)) + "";
             }
             answer = answer.substring(0, answer.length() > 6 ? 6 : answer.length());
 
