@@ -156,7 +156,6 @@ public class Game extends MIDlet implements CommandListener {
             if (i != right_answer_index) {
                 answer = (right_result + (offset < 12 ? -1 * (1 + offset) : offset)) + "";
             }
-            answer = answer.substring(0, answer.length() > 6 ? 6 : answer.length());
 
             answers.append(answer, null);
         }
