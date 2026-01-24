@@ -2,7 +2,8 @@
 
 Простая игра для устройств с поддержкой J2ME приложений. Может использоваться как болванка.
 
-![Gameplay](https://foxelyss.github.io/assets/misc/maththemright1.png)
+<img width="334" height="916" alt="Gameplay" src="https://github.com/user-attachments/assets/5a773892-f8c4-4a55-be0f-23729ac01a69" />
+
 
 ## Сборка
 
